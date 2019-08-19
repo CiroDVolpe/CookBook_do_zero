@@ -2,12 +2,13 @@ require 'rails_helper'
 
   feature 'Visitor create recipe' do
     scenario 'successfully' do
+      recipe_type = RecipeType.create(name: 'Entrada')
 
       visit root_path
       click_on 'Enviar uma receita'
 
       fill_in 'Título', with: 'Tabule'
-      fill_in 'Tipo de Receita', with: 'Entrada'
+      select 'Entrada', from: 'Tipo de Receita'
       fill_in 'Cozinha', with: 'Arabe'
       fill_in 'Dificuldade', with: 'Fácil'
       fill_in 'Tempo de Preparo', with: '45'
