@@ -1,13 +1,40 @@
 <h1><%= @recipe.title %></h1>
+<h2>Receita enviada por <%= @recipe.user.email %></h2>
+<p>
+    <%= image_tag @recipe.profile %>
+</p>
+<% if @recipe.owner?(current_user) %>
+  <%= link_to 'Editar', edit_recipe_path(@recipe) %>
+<% end %>
+
 <h3>Detalhes</h3>
-<p><%= @recipe.recipe_type.name %></p>
-<p><%= @recipe.cuisine %></p>
-<p><%= @recipe.difficulty %></p>
-<p><%= @recipe.cook_time_min %></p>
-<h3>Ingredientes</h3>
+
+<p>Tipo da receita:
+  <%= @recipe.recipe_type.name %>
+</p>
+<p>Cozinha:
+  <%= @recipe.cuisine %>
+</p>
+<p>Dificuldade:
+  <%= @recipe.difficulty %>
+</p>
+<p>Tempo de preparo:
+  <%= @recipe.cook_time_min %>
+</p>
+
+<h3>Ingredientes:</h3>
 <p><%= @recipe.ingredients %></p>
-<h3>Como Preparar</h3>
+
+<h3>Como Preparar:</h3>
 <p><%= @recipe.cook_method %></p>
 
+<% if current_user %>
+<h3> Adicionar receita a uma lista </h3>
+<%= form_for @recipe_list_item, url: add_to_list_recipe_path do |f| %>
+  <%= f.label :recipe_list_id, 'Listas' %>
+  <%= f.collection_select(:recipe_list_id, @recipe_lists, :id, :name) %>
+  <%= f.submit('Adicionar à Lista')%>
+<%end%>
+<%end%>
+
 <%= link_to 'Voltar', root_path %>
-<%= link_to 'Editar Receita', edit_recipe_path %>

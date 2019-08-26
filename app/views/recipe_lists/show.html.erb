@@ -1,0 +1,14 @@
+<h1><%= @recipe_list.name %></h1>
+
+<% if !@recipe_list.recipe_list_items.any? %>
+  <h2> Esta lista ainda esta vazia </h2>
+<% else %>
+  <% @recipe_list.recipe_list_items.each do |item| %>
+    <h1> <%= link_to item.recipe.title, item.recipe %> </h1>
+     <%= link_to 'Apagar', remove_from_list_recipe_path(item), method: :delete,
+     data: { confirm: 'Quer apagar esta tarefa?' } %>
+  <% end %>
+<% end %>
+<p>
+<%= link_to 'Voltar para listas', recipe_lists_path%>
+</p>

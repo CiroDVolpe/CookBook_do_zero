@@ -1,0 +1,10 @@
+<% @recipe_type.errors.full_messages.each do |msg| %>
+<%= msg %>
+<%end%>
+
+<%= form_for @recipe_type do |f| %>
+  <%= f.label :name, 'Nome' %>
+  <%= f.text_field :name %>
+  <%= f.submit  'Enviar' %>
+<% end %>
+

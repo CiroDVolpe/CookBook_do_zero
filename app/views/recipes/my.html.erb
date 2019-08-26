@@ -1,0 +1,8 @@
+<% if @recipes.empty? %>
+<h1>Você ainda não possui nenhuma receita</h1>
+<%= link_to 'Clique aqui para criar', new_recipe_path%>
+<% end %>
+
+<%= render 'list' %>
+
+<%= link_to 'Voltar', root_path %>

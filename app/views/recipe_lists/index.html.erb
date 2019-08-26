@@ -1,0 +1,9 @@
+<% if @recipe_lists.empty? %>
+  <h1> Você ainda não possui listas</h1>
+<% end %>
+<% @recipe_lists.each do |recipe_list| %>
+  <h1><%=link_to recipe_list.name, recipe_list %></h1>
+<% end %>
+
+<%= link_to 'Enviar Lista', new_recipe_list_path %>
+<%= link_to 'Voltar', root_path%>
