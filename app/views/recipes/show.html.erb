@@ -1,10 +1,9 @@
 <h1><%= @recipe.title %></h1>
 <h2>Receita enviada por <%= @recipe.user.email %></h2>
-<p>
-    <%= image_tag @recipe.profile %>
-</p>
+
 <% if @recipe.owner?(current_user) %>
   <%= link_to 'Editar', edit_recipe_path(@recipe) %>
+  <%= link_to 'Deletar Receita', recipe_path(@recipe), method: :delete %>
 <% end %>
 
 <h3>Detalhes</h3>

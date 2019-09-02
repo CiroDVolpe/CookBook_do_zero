@@ -1,6 +1,6 @@
 class RecipesController < ApplicationController
   before_action :load_type, only: %i[new edit]
-  before_action :authenticate_user! , only: %i[ new create my ]
+  before_action :authenticate_user! , only: %i[ new create my delete]
 
   def index
     @recipes = Recipe.all
@@ -74,9 +74,20 @@ class RecipesController < ApplicationController
     recipe_list_item = RecipeListItem.find(params[:id])
     recipe_list = recipe_list_item.recipe_list_id
     recipe_list_item.destroy
-    redirect_to root_path
+    flash[:notice] = 'Esta lista ainda esta vazia'
+    redirect_to recipe_lists_path
   end
 
+  def destroy
+    @recipe = Recipe.find(params[:id])
+    if !@recipe.owner? current_user
+      redirect_to root_path
+    else
+      @recipe.delete
+      flash[:notice] = 'Receita #{@recipe.title} deletada com sucesso'
+      redirect_to root_path
+    end
+  end
 
   private
 

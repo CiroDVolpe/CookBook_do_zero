@@ -5,7 +5,7 @@
 <% else %>
   <% @recipe_list.recipe_list_items.each do |item| %>
     <h1> <%= link_to item.recipe.title, item.recipe %> </h1>
-     <%= link_to 'Apagar', remove_from_list_recipe_path(item), method: :delete,
+     <%= link_to 'Apagar Receita', remove_from_list_recipe_path(item), method: :delete,
      data: { confirm: 'Quer apagar esta tarefa?' } %>
   <% end %>
 <% end %>

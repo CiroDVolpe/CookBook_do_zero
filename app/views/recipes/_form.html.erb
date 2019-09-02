@@ -2,9 +2,6 @@
   <%= f.label :title, 'Título' %>
   <%= f.text_field :title  %>
 
-  <%= f.label :profile, 'Foto de Perfil' %>
-  <%= f.file_field :profile %>
-
   <%= f.label :recipe_type_id, 'Tipo da Receita' %>
   <%= f.collection_select(:recipe_type_id, @recipe_types, :id, :name) %>
 
