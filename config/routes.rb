@@ -11,4 +11,14 @@ Rails.application.routes.draw do
 
   get 'search', to: 'recipes#search'
   get 'my_recipes', to: 'recipes#my'
+
+  namespace :api do
+    namespace :v1 do
+      resources :recipe_types, only: [:create, :show]
+      resources :recipes, only: [:create, :destroy, :index] do
+        post 'accepted', on: :member
+        post 'rejected', on: :member
+      end
+    end
+  end
 end
